@@ -1,3 +1,4 @@
+#!/usr/bin/env gxi
 ;;; -*- Gerbil -*-
 ;;; © vyzo
 ;;; libp2p echo example

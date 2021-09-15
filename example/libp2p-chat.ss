@@ -89,7 +89,7 @@
      (exit 1))))
 
 (def (do-listen host-addresses)
-  (let* ((c (open-libp2p-client host-addresses: host-addresses wait: 20))
+  (let* ((c (open-libp2p-client host-addresses: host-addresses wait: 10))
          (self (libp2p-identify c)))
     (for (p (peer-info->string* self))
       (displayln "I am " p))
@@ -98,7 +98,7 @@
     (thread-sleep! +inf.0)))
 
 (def (do-dial peer host-addresses)
-  (let* ((c (open-libp2p-client host-addresses: host-addresses wait: 20))
+  (let* ((c (open-libp2p-client host-addresses: host-addresses wait: 10))
          (self (libp2p-identify c)))
     (for (p (peer-info->string* self))
       (displayln "I am " p))
