@@ -85,6 +85,12 @@
 
 (def (libp2p-identify c)
   (let (res (control-request c (Request type: 'IDENTIFY) Response-identify))
+    ;; returns a peer-info, which is supplied by daemon
+    ;; whenever a daemon is initialized,
+    ;; it generates a key via the libp2p library
+    ;; TODO: where is this key stored?
+    ;; TODO: can we supply our own keys? probably not...
+    ;; https://github.com/libp2p/go-libp2p-daemon/blob/master/specs/CONTROL.md
     (peer-info (ID (IdentifyResponse-id res))
                (map make-multiaddr (IdentifyResponse-addrs res)))))
 

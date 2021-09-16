@@ -88,8 +88,10 @@
      (getopt-display-help exn "libp2p-chat" (current-error-port))
      (exit 1))))
 
+;; entrypoint
 (def (do-listen host-addresses)
   (let* ((c (open-libp2p-client host-addresses: host-addresses wait: 10))
+         ;; create an identity
          (self (libp2p-identify c)))
     (for (p (peer-info->string* self))
       (displayln "I am " p))
@@ -97,6 +99,7 @@
     (libp2p-listen c [chat-proto] chat-handler)
     (thread-sleep! +inf.0)))
 
+;; entrypoint
 (def (do-dial peer host-addresses)
   (let* ((c (open-libp2p-client host-addresses: host-addresses wait: 10))
          (self (libp2p-identify c)))
